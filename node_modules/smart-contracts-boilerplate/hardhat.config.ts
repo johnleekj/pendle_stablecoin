@@ -5,8 +5,10 @@ import 'hardhat-gas-reporter';
 import * as dotenv from 'dotenv';
 dotenv.config();
 import 'hardhat-contract-sizer';
-import "@typechain/hardhat";
-import "@nomiclabs/hardhat-ethers";
+import '@typechain/hardhat';
+import '@nomiclabs/hardhat-ethers';
+import { removeConsoleLog } from "hardhat-preprocessor";
+import "hardhat-deploy";
 
 task('accounts', 'Prints the list of accounts', async (taskArgs, hre) => {
   const accounts = await hre.ethers.getSigners();
@@ -22,6 +24,7 @@ const config: HardhatUserConfig = {
     tests: './test',
     artifacts: './build/artifacts',
     cache: './build/cache',
+    deploy: "./scripts/deploy",
   },
   solidity: {
     compilers: [
@@ -53,8 +56,25 @@ const config: HardhatUserConfig = {
     strict: true,
   },
   typechain: {
-    outDir: "typechained",
-    target: "ethers-v5",
+    outDir: 'typechained',
+    target: 'ethers-v5',
+  },
+  preprocess: {
+    eachLine: removeConsoleLog(
+      (hre) =>
+        hre.network.name !== "hardhat" && hre.network.name !== "localhost"
+    ),
+  },
+  networks: {
+    hardhat: {
+      chainId: 1337, // temporary for MetaMask support: https://github.com/MetaMask/metamask-extension/issues/10290
+    },
+  },
+  namedAccounts: {
+    deployer: {
+      default: 0, // by default, take the first account as deployer
+      rinkeby: "0x5369f1AF0ef9a346D7B9e1872ac6ECC3af9b0cdb", // on rinkeby, use a specific account
+    },
   },
 };
 
