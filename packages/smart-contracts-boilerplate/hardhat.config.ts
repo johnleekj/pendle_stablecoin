@@ -4,6 +4,7 @@ import "solidity-coverage";
 import "hardhat-gas-reporter";
 import * as dotenv from "dotenv";
 dotenv.config();
+import "hardhat-contract-sizer";
 
 task('accounts', 'Prints the list of accounts', async (taskArgs, hre) => {
   const accounts = await hre.ethers.getSigners();
@@ -42,6 +43,12 @@ const config: HardhatUserConfig = {
     showMethodSig: true,
     onlyCalledMethods: false,
     coinmarketcap: process.env.COINMARKETCAP_API_KEY,
+  },
+  contractSizer: {
+    alphaSort: true,
+    disambiguatePaths: false,
+    runOnCompile: true,
+    strict: true,
   },
 };
 
