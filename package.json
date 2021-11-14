@@ -1,5 +1,18 @@
 {
   "dependencies": {
     "@openzeppelin/contracts": "^4.3.3"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^14.1.0",
+    "@commitlint/config-conventional": "^14.1.0",
+    "husky": "^7.0.4",
+    "lerna": "^4.0.0"
+  },
+  "name": "pendle_stablecoin",
+  "scripts": {
+    "postinstall": "husky install",
+    "lint": "yarn lerna run lint",
+    "lint:fix": "yarn lerna run lint:fix",
+    "test": "yarn lerna run test"
   }
 }
