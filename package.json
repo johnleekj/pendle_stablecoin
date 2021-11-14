@@ -1,4 +1,6 @@
 {
+  "private": true,
+  "workspaces": ["packages/*"],
   "dependencies": {
     "@openzeppelin/contracts": "^4.3.3"
   },
