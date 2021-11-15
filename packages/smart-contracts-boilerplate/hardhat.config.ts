@@ -9,6 +9,7 @@ import '@typechain/hardhat';
 import '@nomiclabs/hardhat-ethers';
 import { removeConsoleLog } from 'hardhat-preprocessor';
 import 'hardhat-deploy';
+import { nodeUrl, accounts } from './utils/network';
 
 task('accounts', 'Prints the list of accounts', async (taskArgs, hre) => {
   const accounts = await hre.ethers.getSigners();
@@ -66,6 +67,19 @@ const config: HardhatUserConfig = {
     hardhat: {
       chainId: 1337, // temporary for MetaMask support: https://github.com/MetaMask/metamask-extension/issues/10290
     },
+    localhost: {
+      url: nodeUrl('localhost'),
+    },
+    rinkeby: {
+      url: nodeUrl('rinkeby'),
+      accounts: accounts('rinkeby'),
+    },
+    kovan: {
+      url: nodeUrl('kovan'),
+      accounts: accounts('kovan'),
+    },
+    // can configure other networks, see examples:
+    // https://github.com/wighawag/template-ethereum-contracts/blob/main/hardhat.config.ts
   },
   namedAccounts: {
     deployer: {
