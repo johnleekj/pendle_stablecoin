@@ -14,7 +14,7 @@ import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
  * Note they can later distribute these tokens as they wish using `transfer` and other
  * `ERC20` functions.
  */
-contract SimpleToken is ERC20 {
+contract MockOT is ERC20 {
   /**
    * @dev Constructor that gives msg.sender all of existing tokens.
    */
