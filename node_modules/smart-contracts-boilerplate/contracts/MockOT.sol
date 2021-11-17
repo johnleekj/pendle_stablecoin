@@ -2,12 +2,6 @@ pragma solidity ^0.8.0;
 
 import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
 
-// contract MockOT is ERC20 {
-//    constructor(uint256 initialSupply) public ERC20("MockOT", "MkOT", 18) {
-//        _mint(msg.sender, initialSupply);
-//    }
-//}
-
 /**
  * @title SimpleToken
  * @dev Very simple ERC20 Token example, where all tokens are pre-assigned to the creator.
@@ -18,7 +12,7 @@ contract MockOT is ERC20 {
   /**
    * @dev Constructor that gives msg.sender all of existing tokens.
    */
-  constructor() ERC20('Simple Token', 'SIM') {
+  constructor() ERC20('MockOT', 'MOT') {
     _mint(msg.sender, 1000000 * (10**uint256(decimals())));
   }
 }
