@@ -14,14 +14,12 @@ declare module 'hardhat/types/runtime' {
     getContractFactory(name: 'IERC20', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.IERC20__factory>;
     getContractFactory(name: 'Greeter', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.Greeter__factory>;
     getContractFactory(name: 'MockOT', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.MockOT__factory>;
-    getContractFactory(name: 'SimpleToken', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.SimpleToken__factory>;
 
     getContractAt(name: 'ERC20', address: string, signer?: ethers.Signer): Promise<Contracts.ERC20>;
     getContractAt(name: 'IERC20Metadata', address: string, signer?: ethers.Signer): Promise<Contracts.IERC20Metadata>;
     getContractAt(name: 'IERC20', address: string, signer?: ethers.Signer): Promise<Contracts.IERC20>;
     getContractAt(name: 'Greeter', address: string, signer?: ethers.Signer): Promise<Contracts.Greeter>;
     getContractAt(name: 'MockOT', address: string, signer?: ethers.Signer): Promise<Contracts.MockOT>;
-    getContractAt(name: 'SimpleToken', address: string, signer?: ethers.Signer): Promise<Contracts.SimpleToken>;
 
     // default types
     getContractFactory(name: string, signerOrOptions?: ethers.Signer | FactoryOptions): Promise<ethers.ContractFactory>;
