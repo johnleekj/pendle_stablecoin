@@ -12,7 +12,7 @@ contract MockOT is ERC20 {
    uint256 public immutable start;
    uint256 public immutable expiry;
    
-   constructor(uint256 daysToExpire) ERC20("Simple Token", "SIM") {
+   constructor(uint256 daysToExpire) ERC20('MockOT', 'MOT') {
       start = block.timestamp;
       expiry = block.timestamp + daysToExpire * 1 days;
        
