@@ -3,17 +3,37 @@ pragma solidity ^0.8.0;
 
 import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
 
-/**
- * @title SimpleToken
- * @dev Very simple ERC20 Token example, where all tokens are pre-assigned to the creator.
- * Note they can later distribute these tokens as they wish using `transfer` and other
- * `ERC20` functions.
- */
+
 contract MockOT is ERC20 {
   /**
    * @dev Constructor that gives msg.sender all of existing tokens.
    */
-  constructor() ERC20('MockOT', 'MOT') {
-    _mint(msg.sender, 1000000 * (10**uint256(decimals())));
+   
+   uint256 public immutable start;
+   uint256 public immutable expiry;
+   
+   constructor(uint256 daysToExpire) ERC20("Simple Token", "SIM") {
+      start = block.timestamp;
+      expiry = block.timestamp + daysToExpire * 1 days;
+       
+      _mint(msg.sender, 1000000 * (10**uint256(decimals())));
   }
+  
+  /**
+     * @notice The yield contract start in epoch time.
+     * @return Returns the yield start date.
+     **/
+   function getStart() external view returns (uint256){
+       return start;
+   }
+
+
+    /**
+     * @notice The yield contract expiry in epoch time.
+     * @return Returns the yield expiry date.
+     **/
+    function getExpiry() external view returns (uint256){
+        return expiry;
+    }
+    
 }
