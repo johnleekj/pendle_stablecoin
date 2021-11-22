@@ -20,20 +20,25 @@ contract MockOT is ERC20 {
   }
   
   /**
-     * @notice The yield contract start in epoch time.
+     * @notice The OT contract start in epoch time.
      * @return Returns the yield start date.
      **/
-   function getStart() external view returns (uint256){
+   function getStart() external view returns (uint256) {
        return start;
    }
 
 
     /**
-     * @notice The yield contract expiry in epoch time.
+     * @notice The OT contract expiry in epoch time.
      * @return Returns the yield expiry date.
      **/
-    function getExpiry() external view returns (uint256){
+    function getExpiry() external view returns (uint256) {
         return expiry;
+    }
+    
+    // for testing purposes
+    function returnCurrentMsgSender() external view returns (address) {
+        return msg.sender;
     }
     
 }
