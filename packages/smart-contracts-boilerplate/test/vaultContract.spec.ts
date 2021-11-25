@@ -11,7 +11,7 @@ describe('minting of stable coin', function () {
   let mockOT: MockOT;
   let mockOTFactory: MockOT__factory;
   let khooleecoinminter: KhooleeCoinMinter;
-  let khooleecoinminterFactory: KhooleeCoinMinter__factory;
+  let khooleecoinminterFactory: KhooleeCoinMinter__factory
 
   beforeEach(async () => {
     khooleecoinminterFactory = (await ethers.getContractFactory('KhooleeCoinMinter')) as KhooleeCoinMinter__factory;
@@ -23,6 +23,7 @@ describe('minting of stable coin', function () {
   });
 
   it('should allow collateral collection, stable coin loan and repayment of stable coin', async function () {
+
     await mockOT.deployed();
     await khooleecoinminter.deployed();
     await vaultContract.deployed();
