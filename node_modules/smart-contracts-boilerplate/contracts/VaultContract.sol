@@ -67,7 +67,7 @@ contract VaultContract {
   // }
 
   function addCollateral(uint256 collateralAmount) public {
-    uint256 flatFeeInMockOT = (FLAT_FEE * 10) / getMockOtUSDValue();
+    uint256 flatFeeInMockOT = (FLAT_FEE * 10) / _getMockOtUSDValue();
     require(_mockOT.balanceOf(msg.sender) >= collateralAmount + flatFeeInMockOT);
     _mockOT.transferFrom(msg.sender, address(this), collateralAmount + flatFeeInMockOT);
     userCollateral[msg.sender] = userCollateral[msg.sender].add(collateralAmount);
@@ -80,18 +80,24 @@ contract VaultContract {
     userCollateral[msg.sender] = userCollateral[msg.sender].sub(collateralAmount);
     totalCollateral = totalCollateral.sub(collateralAmount);
 
-    liquidate_when_liquidatable_debt_position(msg.sender);
+    _liquidate_when_liquidatable_debt_position(msg.sender);
   }
 
   function borrowKhooleeCoins(uint256 borrowAmount) public {
     // borrowed KhooleeCoins will be newly minted
     uint256 maxAmountThatCanBeBorrowed = (userCollateral[msg.sender] *
-      getMockOtUSDValue() *
+      _getMockOtUSDValue() *
       LOAN_TO_VALUE) /
       LOAN_TO_VALUE_PRECISION /
       10;
-    require(borrowAmount + userBorrowed[msg.sender] <= maxAmountThatCanBeBorrowed);
-    require(totalBorrow + borrowAmount + userBorrowed[msg.sender] <= DEBT_CEILING);
+    require(
+      borrowAmount + userBorrowed[msg.sender] <= maxAmountThatCanBeBorrowed,
+      'Borrow Amount above Debt Ceiling'
+    );
+    require(
+      totalBorrow + borrowAmount + userBorrowed[msg.sender] <= DEBT_CEILING,
+      'Borrow Amount Above Debt Ceiling'
+    );
 
     _KhooleeToken.mint(msg.sender, borrowAmount); // mints to the borrower
     userBorrowed[msg.sender] = userBorrowed[msg.sender].add(borrowAmount);
@@ -99,7 +105,10 @@ contract VaultContract {
   }
 
   function repayDebt() public {
-    require(_KhooleeToken.balanceOf(msg.sender) >= userBorrowed[msg.sender]);
+    require(
+      _KhooleeToken.balanceOf(msg.sender) >= userBorrowed[msg.sender],
+      'Insufficient Tokens'
+    );
     uint256 borrowAmount = userBorrowed[msg.sender];
 
     // repayed stablecoins will be burnt
@@ -110,16 +119,16 @@ contract VaultContract {
     removeCollateral(userCollateral[msg.sender]);
   }
 
-  function liquidate_when_liquidatable_debt_position(address addressToLiquidate) private {
+  function _liquidate_when_liquidatable_debt_position(address addressToLiquidate) private {
     // if health factor < 100, can liquidate collateral
     // else, collateral still safe
     bool liquidatable = returnHealthFactor() < 100;
     if (liquidatable) {
-      liquidate(addressToLiquidate);
+      _liquidate(addressToLiquidate);
     }
   }
 
-  function liquidate(address addressToLiquidate) private {
+  function _liquidate(address addressToLiquidate) private {
     // make the borrower no longer have access to the collateral
     // uint256 amountToLiquidate = userCollateral[addressToLiquidate];
     userCollateral[addressToLiquidate] = 0;
@@ -130,10 +139,10 @@ contract VaultContract {
   // else, collateral still safe
   function returnHealthFactor() public view returns (uint256) {
     if (userBorrowed[msg.sender] == 0) return 100;
-    uint256 a = percent(
+    uint256 a = _percent(
       userCollateral[msg.sender] *
-        getMockOtUSDValue() *
-        percent(LIQUIDATION_THRESHOLD, LIQUIDATION_THRESHOLD_PRECISION, 2),
+        _getMockOtUSDValue() *
+        _percent(LIQUIDATION_THRESHOLD, LIQUIDATION_THRESHOLD_PRECISION, 2),
       userBorrowed[msg.sender] * 100,
       2
     ) / 10;
@@ -143,11 +152,11 @@ contract VaultContract {
 
   //======================= Helper Methods ==========================================
   // supposed to be oracle to get value, but this will do for now
-  function getMockOtUSDValue() private pure returns (uint256) {
-    return percent(8, 10, 1);
+  function _getMockOtUSDValue() private pure returns (uint256) {
+    return _percent(8, 10, 1);
   }
 
-  function percent(
+  function _percent(
     uint256 numerator,
     uint256 denominator,
     uint256 precision
