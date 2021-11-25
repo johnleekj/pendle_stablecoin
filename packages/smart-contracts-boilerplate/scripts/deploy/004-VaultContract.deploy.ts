@@ -6,6 +6,7 @@ const deployFunc: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
 
   await hre.deployments.deploy('VaultContract', {
     from: deployer,
+    args: [],
     log: true,
   });
 };

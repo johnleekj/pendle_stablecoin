@@ -13,35 +13,46 @@ import {
   ContractTransaction,
   Overrides,
   CallOverrides,
-} from 'ethers';
-import { BytesLike } from '@ethersproject/bytes';
-import { Listener, Provider } from '@ethersproject/providers';
-import { FunctionFragment, EventFragment, Result } from '@ethersproject/abi';
-import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from './common';
+} from "ethers";
+import { BytesLike } from "@ethersproject/bytes";
+import { Listener, Provider } from "@ethersproject/providers";
+import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
+import type {
+  TypedEventFilter,
+  TypedEvent,
+  TypedListener,
+  OnEvent,
+} from "./common";
 
 export interface MockOTInterfaceInterface extends ethers.utils.Interface {
   functions: {
-    'balanceOf(address)': FunctionFragment;
-    'getExpiry()': FunctionFragment;
-    'getStart()': FunctionFragment;
-    'returnCurrentMsgSender()': FunctionFragment;
-    'transfer(address,uint256)': FunctionFragment;
-    'transferFrom(address,address,uint256)': FunctionFragment;
+    "balanceOf(address)": FunctionFragment;
+    "getExpiry()": FunctionFragment;
+    "getStart()": FunctionFragment;
+    "transfer(address,uint256)": FunctionFragment;
+    "transferFrom(address,address,uint256)": FunctionFragment;
   };
 
-  encodeFunctionData(functionFragment: 'balanceOf', values: [string]): string;
-  encodeFunctionData(functionFragment: 'getExpiry', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'getStart', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'returnCurrentMsgSender', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'transfer', values: [string, BigNumberish]): string;
-  encodeFunctionData(functionFragment: 'transferFrom', values: [string, string, BigNumberish]): string;
+  encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
+  encodeFunctionData(functionFragment: "getExpiry", values?: undefined): string;
+  encodeFunctionData(functionFragment: "getStart", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "transfer",
+    values: [string, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "transferFrom",
+    values: [string, string, BigNumberish]
+  ): string;
 
-  decodeFunctionResult(functionFragment: 'balanceOf', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getExpiry', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getStart', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'returnCurrentMsgSender', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'transfer', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'transferFrom', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "getExpiry", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "getStart", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "transfer", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "transferFrom",
+    data: BytesLike
+  ): Result;
 
   events: {};
 }
@@ -59,9 +70,13 @@ export interface MockOTInterface extends BaseContract {
     toBlock?: string | number | undefined
   ): Promise<Array<TEvent>>;
 
-  listeners<TEvent extends TypedEvent>(eventFilter?: TypedEventFilter<TEvent>): Array<TypedListener<TEvent>>;
+  listeners<TEvent extends TypedEvent>(
+    eventFilter?: TypedEventFilter<TEvent>
+  ): Array<TypedListener<TEvent>>;
   listeners(eventName?: string): Array<Listener>;
-  removeAllListeners<TEvent extends TypedEvent>(eventFilter: TypedEventFilter<TEvent>): this;
+  removeAllListeners<TEvent extends TypedEvent>(
+    eventFilter: TypedEventFilter<TEvent>
+  ): this;
   removeAllListeners(eventName?: string): this;
   off: OnEvent<this>;
   on: OnEvent<this>;
@@ -75,9 +90,11 @@ export interface MockOTInterface extends BaseContract {
 
     getStart(overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    returnCurrentMsgSender(overrides?: CallOverrides): Promise<[string]>;
-
-    transfer(recipient: string, amount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
+    transfer(
+      recipient: string,
+      amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
 
     transferFrom(
       sender: string,
@@ -93,9 +110,11 @@ export interface MockOTInterface extends BaseContract {
 
   getStart(overrides?: CallOverrides): Promise<BigNumber>;
 
-  returnCurrentMsgSender(overrides?: CallOverrides): Promise<string>;
-
-  transfer(recipient: string, amount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
+  transfer(
+    recipient: string,
+    amount: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
 
   transferFrom(
     sender: string,
@@ -111,11 +130,18 @@ export interface MockOTInterface extends BaseContract {
 
     getStart(overrides?: CallOverrides): Promise<BigNumber>;
 
-    returnCurrentMsgSender(overrides?: CallOverrides): Promise<string>;
+    transfer(
+      recipient: string,
+      amount: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
 
-    transfer(recipient: string, amount: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
-
-    transferFrom(sender: string, recipient: string, amount: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
+    transferFrom(
+      sender: string,
+      recipient: string,
+      amount: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
   };
 
   filters: {};
@@ -127,9 +153,11 @@ export interface MockOTInterface extends BaseContract {
 
     getStart(overrides?: CallOverrides): Promise<BigNumber>;
 
-    returnCurrentMsgSender(overrides?: CallOverrides): Promise<BigNumber>;
-
-    transfer(recipient: string, amount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
+    transfer(
+      recipient: string,
+      amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
 
     transferFrom(
       sender: string,
@@ -140,13 +168,14 @@ export interface MockOTInterface extends BaseContract {
   };
 
   populateTransaction: {
-    balanceOf(owner: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    balanceOf(
+      owner: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     getExpiry(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     getStart(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    returnCurrentMsgSender(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     transfer(
       recipient: string,

@@ -57,9 +57,9 @@ contract VaultContract {
   KhooleeCoinMinterInterface _KhooleeToken;
   MockOTInterface _mockOT;
 
-  constructor(KhooleeCoinMinterInterface token, MockOTInterface token2) {
-    _KhooleeToken = token;
-    _mockOT = token2;
+  constructor(address khooleeToken, address mockOT) {
+    _KhooleeToken = KhooleeCoinMinterInterface(khooleeToken);
+    _mockOT = MockOTInterface(mockOT);
   }
 
   // function mintMinerReward() public {
