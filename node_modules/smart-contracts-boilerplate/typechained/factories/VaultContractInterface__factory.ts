@@ -2,52 +2,49 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer, utils } from "ethers";
-import { Provider } from "@ethersproject/providers";
-import type {
-  VaultContractInterface,
-  VaultContractInterfaceInterface,
-} from "../VaultContractInterface";
+import { Contract, Signer, utils } from 'ethers';
+import { Provider } from '@ethersproject/providers';
+import type { VaultContractInterface, VaultContractInterfaceInterface } from '../VaultContractInterface';
 
 const _abi = [
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "collateralAmount",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'collateralAmount',
+        type: 'uint256',
       },
     ],
-    name: "addCollateral",
+    name: 'addCollateral',
     outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "borrowAmount",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'borrowAmount',
+        type: 'uint256',
       },
     ],
-    name: "borrowKhooleeCoins",
+    name: 'borrowKhooleeCoins',
     outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "collateralAmount",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'collateralAmount',
+        type: 'uint256',
       },
     ],
-    name: "removeCollateral",
+    name: 'removeCollateral',
     outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
 ];
 
@@ -56,14 +53,7 @@ export class VaultContractInterface__factory {
   static createInterface(): VaultContractInterfaceInterface {
     return new utils.Interface(_abi) as VaultContractInterfaceInterface;
   }
-  static connect(
-    address: string,
-    signerOrProvider: Signer | Provider
-  ): VaultContractInterface {
-    return new Contract(
-      address,
-      _abi,
-      signerOrProvider
-    ) as VaultContractInterface;
+  static connect(address: string, signerOrProvider: Signer | Provider): VaultContractInterface {
+    return new Contract(address, _abi, signerOrProvider) as VaultContractInterface;
   }
 }

@@ -13,13 +13,13 @@ describe('testing time', function () {
     mockOT = await mockOTFactory.deploy(500);
   });
 
-  it("be able to retrieve start date and expiry", async function () {
+  it('be able to retrieve start date and expiry', async function () {
     await mockOT.deployed();
 
     // console.log(mockOT.address);
 
     expect(await mockOT.getStart()).to.be.above(100);
 
-    expect(await mockOT.getExpiry()).to.be.above(100)
+    expect(await mockOT.getExpiry()).to.be.above(100);
   });
 });

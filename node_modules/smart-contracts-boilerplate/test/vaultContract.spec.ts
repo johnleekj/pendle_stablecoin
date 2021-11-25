@@ -15,13 +15,12 @@ describe('setMockOTContract', function () {
     vaultContract = await vaultContractFactory.deploy();
     mockOTFactory = (await ethers.getContractFactory('MockOT')) as MockOT__factory;
     mockOT = await mockOTFactory.deploy(500);
-    
   });
 
-  it("should set the address of the vault contract to mockOT contract for testing", async function () {
+  it('should set the address of the vault contract to mockOT contract for testing', async function () {
     await vaultContract.deployed();
     await mockOT.deployed();
-    
+
     await mockOT.approve(vaultContract.address, 100);
     await vaultContract.SetMockOTContract(mockOT.address);
 

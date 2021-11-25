@@ -13,142 +13,59 @@ import {
   ContractTransaction,
   Overrides,
   CallOverrides,
-} from "ethers";
-import { BytesLike } from "@ethersproject/bytes";
-import { Listener, Provider } from "@ethersproject/providers";
-import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
-import type {
-  TypedEventFilter,
-  TypedEvent,
-  TypedListener,
-  OnEvent,
-} from "./common";
+} from 'ethers';
+import { BytesLike } from '@ethersproject/bytes';
+import { Listener, Provider } from '@ethersproject/providers';
+import { FunctionFragment, EventFragment, Result } from '@ethersproject/abi';
+import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from './common';
 
 export interface VaultContractInterface extends ethers.utils.Interface {
   functions: {
-    "KhooleeCoinMinterContractAddress()": FunctionFragment;
-    "SetMockOTContract(address)": FunctionFragment;
-    "addCollateral(uint256)": FunctionFragment;
-    "approveKhooleeTransfer(address,uint256)": FunctionFragment;
-    "borrowKhooleeCoins(uint256)": FunctionFragment;
-    "getDebtCeiling()": FunctionFragment;
-    "removeCollateral(uint256)": FunctionFragment;
-    "repayDebt()": FunctionFragment;
-    "returnCurrentMsgSender()": FunctionFragment;
-    "returnHealthFactor()": FunctionFragment;
-    "totalBorrow()": FunctionFragment;
-    "totalCollateral()": FunctionFragment;
-    "userBorrowed(address)": FunctionFragment;
-    "userCollateral(address)": FunctionFragment;
+    'KhooleeCoinMinterContractAddress()': FunctionFragment;
+    'SetMockOTContract(address)': FunctionFragment;
+    'addCollateral(uint256)': FunctionFragment;
+    'approveKhooleeTransfer(address,uint256)': FunctionFragment;
+    'borrowKhooleeCoins(uint256)': FunctionFragment;
+    'getDebtCeiling()': FunctionFragment;
+    'removeCollateral(uint256)': FunctionFragment;
+    'repayDebt()': FunctionFragment;
+    'returnCurrentMsgSender()': FunctionFragment;
+    'returnHealthFactor()': FunctionFragment;
+    'totalBorrow()': FunctionFragment;
+    'totalCollateral()': FunctionFragment;
+    'userBorrowed(address)': FunctionFragment;
+    'userCollateral(address)': FunctionFragment;
   };
 
-  encodeFunctionData(
-    functionFragment: "KhooleeCoinMinterContractAddress",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "SetMockOTContract",
-    values: [string]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "addCollateral",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "approveKhooleeTransfer",
-    values: [string, BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "borrowKhooleeCoins",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getDebtCeiling",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "removeCollateral",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(functionFragment: "repayDebt", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "returnCurrentMsgSender",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "returnHealthFactor",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "totalBorrow",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "totalCollateral",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "userBorrowed",
-    values: [string]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "userCollateral",
-    values: [string]
-  ): string;
+  encodeFunctionData(functionFragment: 'KhooleeCoinMinterContractAddress', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'SetMockOTContract', values: [string]): string;
+  encodeFunctionData(functionFragment: 'addCollateral', values: [BigNumberish]): string;
+  encodeFunctionData(functionFragment: 'approveKhooleeTransfer', values: [string, BigNumberish]): string;
+  encodeFunctionData(functionFragment: 'borrowKhooleeCoins', values: [BigNumberish]): string;
+  encodeFunctionData(functionFragment: 'getDebtCeiling', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'removeCollateral', values: [BigNumberish]): string;
+  encodeFunctionData(functionFragment: 'repayDebt', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'returnCurrentMsgSender', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'returnHealthFactor', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'totalBorrow', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'totalCollateral', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'userBorrowed', values: [string]): string;
+  encodeFunctionData(functionFragment: 'userCollateral', values: [string]): string;
 
-  decodeFunctionResult(
-    functionFragment: "KhooleeCoinMinterContractAddress",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "SetMockOTContract",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "addCollateral",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "approveKhooleeTransfer",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "borrowKhooleeCoins",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getDebtCeiling",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "removeCollateral",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "repayDebt", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "returnCurrentMsgSender",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "returnHealthFactor",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "totalBorrow",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "totalCollateral",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "userBorrowed",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "userCollateral",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: 'KhooleeCoinMinterContractAddress', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'SetMockOTContract', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'addCollateral', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'approveKhooleeTransfer', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'borrowKhooleeCoins', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'getDebtCeiling', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'removeCollateral', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'repayDebt', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'returnCurrentMsgSender', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'returnHealthFactor', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'totalBorrow', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'totalCollateral', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'userBorrowed', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'userCollateral', data: BytesLike): Result;
 
   events: {};
 }
@@ -166,13 +83,9 @@ export interface VaultContract extends BaseContract {
     toBlock?: string | number | undefined
   ): Promise<Array<TEvent>>;
 
-  listeners<TEvent extends TypedEvent>(
-    eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
+  listeners<TEvent extends TypedEvent>(eventFilter?: TypedEventFilter<TEvent>): Array<TypedListener<TEvent>>;
   listeners(eventName?: string): Array<Listener>;
-  removeAllListeners<TEvent extends TypedEvent>(
-    eventFilter: TypedEventFilter<TEvent>
-  ): this;
+  removeAllListeners<TEvent extends TypedEvent>(eventFilter: TypedEventFilter<TEvent>): this;
   removeAllListeners(eventName?: string): this;
   off: OnEvent<this>;
   on: OnEvent<this>;
@@ -180,19 +93,11 @@ export interface VaultContract extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
-    KhooleeCoinMinterContractAddress(
-      overrides?: CallOverrides
-    ): Promise<[string]>;
+    KhooleeCoinMinterContractAddress(overrides?: CallOverrides): Promise<[string]>;
 
-    SetMockOTContract(
-      addr: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    SetMockOTContract(addr: string, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
-    addCollateral(
-      collateralAmount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    addCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
     approveKhooleeTransfer(
       addr: string,
@@ -200,21 +105,13 @@ export interface VaultContract extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    borrowKhooleeCoins(
-      borrowAmount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    borrowKhooleeCoins(borrowAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
     getDebtCeiling(overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    removeCollateral(
-      collateralAmount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    removeCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
-    repayDebt(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    repayDebt(overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
     returnCurrentMsgSender(overrides?: CallOverrides): Promise<[string]>;
 
@@ -226,23 +123,14 @@ export interface VaultContract extends BaseContract {
 
     userBorrowed(arg0: string, overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    userCollateral(
-      arg0: string,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
+    userCollateral(arg0: string, overrides?: CallOverrides): Promise<[BigNumber]>;
   };
 
   KhooleeCoinMinterContractAddress(overrides?: CallOverrides): Promise<string>;
 
-  SetMockOTContract(
-    addr: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  SetMockOTContract(addr: string, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
-  addCollateral(
-    collateralAmount: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  addCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
   approveKhooleeTransfer(
     addr: string,
@@ -250,21 +138,13 @@ export interface VaultContract extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  borrowKhooleeCoins(
-    borrowAmount: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  borrowKhooleeCoins(borrowAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
   getDebtCeiling(overrides?: CallOverrides): Promise<BigNumber>;
 
-  removeCollateral(
-    collateralAmount: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  removeCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
-  repayDebt(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  repayDebt(overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
   returnCurrentMsgSender(overrides?: CallOverrides): Promise<string>;
 
@@ -279,34 +159,19 @@ export interface VaultContract extends BaseContract {
   userCollateral(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
 
   callStatic: {
-    KhooleeCoinMinterContractAddress(
-      overrides?: CallOverrides
-    ): Promise<string>;
+    KhooleeCoinMinterContractAddress(overrides?: CallOverrides): Promise<string>;
 
     SetMockOTContract(addr: string, overrides?: CallOverrides): Promise<void>;
 
-    addCollateral(
-      collateralAmount: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
+    addCollateral(collateralAmount: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
-    approveKhooleeTransfer(
-      addr: string,
-      approveAmt: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
+    approveKhooleeTransfer(addr: string, approveAmt: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
-    borrowKhooleeCoins(
-      borrowAmount: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
+    borrowKhooleeCoins(borrowAmount: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
     getDebtCeiling(overrides?: CallOverrides): Promise<BigNumber>;
 
-    removeCollateral(
-      collateralAmount: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
+    removeCollateral(collateralAmount: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
     repayDebt(overrides?: CallOverrides): Promise<void>;
 
@@ -326,19 +191,11 @@ export interface VaultContract extends BaseContract {
   filters: {};
 
   estimateGas: {
-    KhooleeCoinMinterContractAddress(
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    KhooleeCoinMinterContractAddress(overrides?: CallOverrides): Promise<BigNumber>;
 
-    SetMockOTContract(
-      addr: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    SetMockOTContract(addr: string, overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
 
-    addCollateral(
-      collateralAmount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    addCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
 
     approveKhooleeTransfer(
       addr: string,
@@ -346,21 +203,13 @@ export interface VaultContract extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    borrowKhooleeCoins(
-      borrowAmount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    borrowKhooleeCoins(borrowAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
 
     getDebtCeiling(overrides?: CallOverrides): Promise<BigNumber>;
 
-    removeCollateral(
-      collateralAmount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    removeCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
 
-    repayDebt(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    repayDebt(overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
 
     returnCurrentMsgSender(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -376,19 +225,11 @@ export interface VaultContract extends BaseContract {
   };
 
   populateTransaction: {
-    KhooleeCoinMinterContractAddress(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    KhooleeCoinMinterContractAddress(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    SetMockOTContract(
-      addr: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    SetMockOTContract(addr: string, overrides?: Overrides & { from?: string | Promise<string> }): Promise<PopulatedTransaction>;
 
-    addCollateral(
-      collateralAmount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    addCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<PopulatedTransaction>;
 
     approveKhooleeTransfer(
       addr: string,
@@ -396,42 +237,24 @@ export interface VaultContract extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    borrowKhooleeCoins(
-      borrowAmount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    borrowKhooleeCoins(borrowAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<PopulatedTransaction>;
 
     getDebtCeiling(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    removeCollateral(
-      collateralAmount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    removeCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<PopulatedTransaction>;
 
-    repayDebt(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    repayDebt(overrides?: Overrides & { from?: string | Promise<string> }): Promise<PopulatedTransaction>;
 
-    returnCurrentMsgSender(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    returnCurrentMsgSender(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    returnHealthFactor(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    returnHealthFactor(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     totalBorrow(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     totalCollateral(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    userBorrowed(
-      arg0: string,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    userBorrowed(arg0: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    userCollateral(
-      arg0: string,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    userCollateral(arg0: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
   };
 }
