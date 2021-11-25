@@ -11,9 +11,9 @@ contract MockOT is ERC20 {
   uint256 public immutable start;
   uint256 public immutable expiry;
 
-  constructor(uint256 daysToExpire) ERC20('MockOT', 'MOT') {
+  constructor(uint256 _daysToExpire) ERC20('MockOT', 'MOT') {
     start = block.timestamp;
-    expiry = block.timestamp + daysToExpire * 1 days;
+    expiry = block.timestamp + _daysToExpire * 1 days;
 
     _mint(msg.sender, 1000000 * (10**uint256(decimals())));
   }
@@ -32,10 +32,5 @@ contract MockOT is ERC20 {
    **/
   function getExpiry() external view returns (uint256) {
     return expiry;
-  }
-
-  // for testing purposes
-  function returnCurrentMsgSender() external view returns (address) {
-    return msg.sender;
   }
 }

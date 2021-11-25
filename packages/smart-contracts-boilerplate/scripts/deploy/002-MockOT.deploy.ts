@@ -3,10 +3,10 @@ import { DeployFunction } from 'hardhat-deploy/types';
 
 const deployFunc: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
   const { deployer } = await hre.getNamedAccounts();
-  const chainId = await hre.getChainId();
 
   await hre.deployments.deploy('MockOT', {
     from: deployer,
+    args: [500],
     log: true,
   });
 };
