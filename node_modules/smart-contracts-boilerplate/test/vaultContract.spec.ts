@@ -28,13 +28,15 @@ describe('minting of stable coin', function () {
     await vaultContract.deployed();
 
     const minter_role = await khooleecoinminter.MINTER_ROLE();
-    console.log(minter_role);
+    // console.log(minter_role);
 
     await khooleecoinminter.grantRole(minter_role, vaultContract.address);
 
     await mockOT.approve(vaultContract.address, 100);
     await vaultContract.addCollateral(75);
     await vaultContract.borrowKhooleeCoins(20);
+    console.log(await vaultContract.totalBorrow());
+    expect(await vaultContract.totalBorrow()).to.equal(20);
 
     await khooleecoinminter.approve(vaultContract.address, 100);
     await vaultContract.repayDebt();

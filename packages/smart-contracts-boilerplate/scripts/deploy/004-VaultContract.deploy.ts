@@ -4,9 +4,12 @@ import { DeployFunction } from 'hardhat-deploy/types';
 const deployFunc: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
   const { deployer } = await hre.getNamedAccounts();
 
+  const khooleeCoinMinter = await hre.deployments.get('KhooleeCoinMinter');
+  const mockOT = await hre.deployments.get('MockOT');
+
   await hre.deployments.deploy('VaultContract', {
     from: deployer,
-    args: [],
+    args: [khooleeCoinMinter.address, mockOT.address],
     log: true,
   });
 };
