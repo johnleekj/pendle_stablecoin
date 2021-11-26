@@ -11,7 +11,7 @@ describe('minting of stable coin', function () {
   let mockOT: MockOT;
   let mockOTFactory: MockOT__factory;
   let khooleecoinminter: KhooleeCoinMinter;
-  let khooleecoinminterFactory: KhooleeCoinMinter__factory
+  let khooleecoinminterFactory: KhooleeCoinMinter__factory;
 
   beforeEach(async () => {
     khooleecoinminterFactory = (await ethers.getContractFactory('KhooleeCoinMinter')) as KhooleeCoinMinter__factory;
@@ -23,12 +23,14 @@ describe('minting of stable coin', function () {
   });
 
   it('should allow collateral collection, stable coin loan and repayment of stable coin', async function () {
-
     await mockOT.deployed();
     await khooleecoinminter.deployed();
     await vaultContract.deployed();
 
-    await khooleecoinminter.grantRole(khooleecoinminter.MINTER_ROLE, vaultContract.address);
+    const minter_role = await khooleecoinminter.MINTER_ROLE();
+    console.log(minter_role);
+
+    await khooleecoinminter.grantRole(minter_role, vaultContract.address);
 
     await mockOT.approve(vaultContract.address, 100);
     await vaultContract.addCollateral(75);
@@ -36,23 +38,5 @@ describe('minting of stable coin', function () {
 
     await khooleecoinminter.approve(vaultContract.address, 100);
     await vaultContract.repayDebt();
-    // await vaultContract.deployed();
-    // await mockOT.deployed();
-
-    // await mockOT.approve(vaultContract.address, 100);
-    // await vaultContract.SetMockOTContract(mockOT.address);
-
-    // await vaultContract.addCollateral(75);
-    // console.log(await vaultContract.totalCollateral());
-
-    // await vaultContract.borrowKhooleeCoins(20);
-
-    // console.log(await vaultContract.totalBorrow());
-
-    // await vaultContract.approveKhooleeTransfer(vaultContract.address, 100);
-
-    // await vaultContract.repayDebt();
-
-    // console.log(await vaultContract.totalBorrow());
   });
 });

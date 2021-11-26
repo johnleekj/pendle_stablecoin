@@ -80,7 +80,7 @@ contract VaultContract {
     userCollateral[msg.sender] = userCollateral[msg.sender].sub(collateralAmount);
     totalCollateral = totalCollateral.sub(collateralAmount);
 
-    _liquidate_when_liquidatable_debt_position(msg.sender);
+    _liquidateWhenLiquidatableDebtPosition(msg.sender);
   }
 
   function borrowKhooleeCoins(uint256 borrowAmount) public {
@@ -119,7 +119,7 @@ contract VaultContract {
     removeCollateral(userCollateral[msg.sender]);
   }
 
-  function _liquidate_when_liquidatable_debt_position(address addressToLiquidate) private {
+  function _liquidateWhenLiquidatableDebtPosition(address addressToLiquidate) private {
     // if health factor < 100, can liquidate collateral
     // else, collateral still safe
     bool liquidatable = returnHealthFactor() < 100;
