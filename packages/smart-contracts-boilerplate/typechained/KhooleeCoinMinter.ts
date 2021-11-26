@@ -29,7 +29,6 @@ export interface KhooleeCoinMinterInterface extends ethers.utils.Interface {
     'balanceOf(address)': FunctionFragment;
     'burn(uint256)': FunctionFragment;
     'burnFrom(address,uint256)': FunctionFragment;
-    'c_0xc6a91717(bytes32)': FunctionFragment;
     'decimals()': FunctionFragment;
     'decreaseAllowance(address,uint256)': FunctionFragment;
     'getRoleAdmin(bytes32)': FunctionFragment;
@@ -60,7 +59,6 @@ export interface KhooleeCoinMinterInterface extends ethers.utils.Interface {
   encodeFunctionData(functionFragment: 'balanceOf', values: [string]): string;
   encodeFunctionData(functionFragment: 'burn', values: [BigNumberish]): string;
   encodeFunctionData(functionFragment: 'burnFrom', values: [string, BigNumberish]): string;
-  encodeFunctionData(functionFragment: 'c_0xc6a91717', values: [BytesLike]): string;
   encodeFunctionData(functionFragment: 'decimals', values?: undefined): string;
   encodeFunctionData(functionFragment: 'decreaseAllowance', values: [string, BigNumberish]): string;
   encodeFunctionData(functionFragment: 'getRoleAdmin', values: [BytesLike]): string;
@@ -90,7 +88,6 @@ export interface KhooleeCoinMinterInterface extends ethers.utils.Interface {
   decodeFunctionResult(functionFragment: 'balanceOf', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'burn', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'burnFrom', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'c_0xc6a91717', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'decimals', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'decreaseAllowance', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'getRoleAdmin', data: BytesLike): Result;
@@ -198,8 +195,6 @@ export interface KhooleeCoinMinter extends BaseContract {
 
     burnFrom(account: string, amount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
-    c_0xc6a91717(c__0xc6a91717: BytesLike, overrides?: CallOverrides): Promise<[void]>;
-
     decimals(overrides?: CallOverrides): Promise<[number]>;
 
     decreaseAllowance(
@@ -270,8 +265,6 @@ export interface KhooleeCoinMinter extends BaseContract {
 
   burnFrom(account: string, amount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
-  c_0xc6a91717(c__0xc6a91717: BytesLike, overrides?: CallOverrides): Promise<void>;
-
   decimals(overrides?: CallOverrides): Promise<number>;
 
   decreaseAllowance(
@@ -341,8 +334,6 @@ export interface KhooleeCoinMinter extends BaseContract {
     burn(amount: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
     burnFrom(account: string, amount: BigNumberish, overrides?: CallOverrides): Promise<void>;
-
-    c_0xc6a91717(c__0xc6a91717: BytesLike, overrides?: CallOverrides): Promise<void>;
 
     decimals(overrides?: CallOverrides): Promise<number>;
 
@@ -433,8 +424,6 @@ export interface KhooleeCoinMinter extends BaseContract {
 
     burnFrom(account: string, amount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
 
-    c_0xc6a91717(c__0xc6a91717: BytesLike, overrides?: CallOverrides): Promise<BigNumber>;
-
     decimals(overrides?: CallOverrides): Promise<BigNumber>;
 
     decreaseAllowance(
@@ -505,8 +494,6 @@ export interface KhooleeCoinMinter extends BaseContract {
     burn(amount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<PopulatedTransaction>;
 
     burnFrom(account: string, amount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<PopulatedTransaction>;
-
-    c_0xc6a91717(c__0xc6a91717: BytesLike, overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     decimals(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 

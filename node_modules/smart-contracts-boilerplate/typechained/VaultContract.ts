@@ -23,7 +23,6 @@ export interface VaultContractInterface extends ethers.utils.Interface {
   functions: {
     'addCollateral(uint256)': FunctionFragment;
     'borrowKhooleeCoins(uint256)': FunctionFragment;
-    'c_0x36d691bc(bytes32)': FunctionFragment;
     'getDebtCeiling()': FunctionFragment;
     'removeCollateral(uint256)': FunctionFragment;
     'repayDebt()': FunctionFragment;
@@ -36,7 +35,6 @@ export interface VaultContractInterface extends ethers.utils.Interface {
 
   encodeFunctionData(functionFragment: 'addCollateral', values: [BigNumberish]): string;
   encodeFunctionData(functionFragment: 'borrowKhooleeCoins', values: [BigNumberish]): string;
-  encodeFunctionData(functionFragment: 'c_0x36d691bc', values: [BytesLike]): string;
   encodeFunctionData(functionFragment: 'getDebtCeiling', values?: undefined): string;
   encodeFunctionData(functionFragment: 'removeCollateral', values: [BigNumberish]): string;
   encodeFunctionData(functionFragment: 'repayDebt', values?: undefined): string;
@@ -48,7 +46,6 @@ export interface VaultContractInterface extends ethers.utils.Interface {
 
   decodeFunctionResult(functionFragment: 'addCollateral', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'borrowKhooleeCoins', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'c_0x36d691bc', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'getDebtCeiling', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'removeCollateral', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'repayDebt', data: BytesLike): Result;
@@ -88,8 +85,6 @@ export interface VaultContract extends BaseContract {
 
     borrowKhooleeCoins(borrowAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
-    c_0x36d691bc(c__0x36d691bc: BytesLike, overrides?: CallOverrides): Promise<[void]>;
-
     getDebtCeiling(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     removeCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
@@ -111,8 +106,6 @@ export interface VaultContract extends BaseContract {
 
   borrowKhooleeCoins(borrowAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
-  c_0x36d691bc(c__0x36d691bc: BytesLike, overrides?: CallOverrides): Promise<void>;
-
   getDebtCeiling(overrides?: CallOverrides): Promise<BigNumber>;
 
   removeCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
@@ -133,8 +126,6 @@ export interface VaultContract extends BaseContract {
     addCollateral(collateralAmount: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
     borrowKhooleeCoins(borrowAmount: BigNumberish, overrides?: CallOverrides): Promise<void>;
-
-    c_0x36d691bc(c__0x36d691bc: BytesLike, overrides?: CallOverrides): Promise<void>;
 
     getDebtCeiling(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -160,8 +151,6 @@ export interface VaultContract extends BaseContract {
 
     borrowKhooleeCoins(borrowAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
 
-    c_0x36d691bc(c__0x36d691bc: BytesLike, overrides?: CallOverrides): Promise<BigNumber>;
-
     getDebtCeiling(overrides?: CallOverrides): Promise<BigNumber>;
 
     removeCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
@@ -183,8 +172,6 @@ export interface VaultContract extends BaseContract {
     addCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<PopulatedTransaction>;
 
     borrowKhooleeCoins(borrowAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<PopulatedTransaction>;
-
-    c_0x36d691bc(c__0x36d691bc: BytesLike, overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     getDebtCeiling(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
