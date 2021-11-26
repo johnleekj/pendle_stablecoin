@@ -24,10 +24,15 @@ export interface MockOTInterface extends ethers.utils.Interface {
     'allowance(address,address)': FunctionFragment;
     'approve(address,uint256)': FunctionFragment;
     'balanceOf(address)': FunctionFragment;
+    'c_0xf04ab5b0(bytes32)': FunctionFragment;
     'decimals()': FunctionFragment;
     'decreaseAllowance(address,uint256)': FunctionFragment;
+    'expiry()': FunctionFragment;
+    'getExpiry()': FunctionFragment;
+    'getStart()': FunctionFragment;
     'increaseAllowance(address,uint256)': FunctionFragment;
     'name()': FunctionFragment;
+    'start()': FunctionFragment;
     'symbol()': FunctionFragment;
     'totalSupply()': FunctionFragment;
     'transfer(address,uint256)': FunctionFragment;
@@ -37,10 +42,15 @@ export interface MockOTInterface extends ethers.utils.Interface {
   encodeFunctionData(functionFragment: 'allowance', values: [string, string]): string;
   encodeFunctionData(functionFragment: 'approve', values: [string, BigNumberish]): string;
   encodeFunctionData(functionFragment: 'balanceOf', values: [string]): string;
+  encodeFunctionData(functionFragment: 'c_0xf04ab5b0', values: [BytesLike]): string;
   encodeFunctionData(functionFragment: 'decimals', values?: undefined): string;
   encodeFunctionData(functionFragment: 'decreaseAllowance', values: [string, BigNumberish]): string;
+  encodeFunctionData(functionFragment: 'expiry', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'getExpiry', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'getStart', values?: undefined): string;
   encodeFunctionData(functionFragment: 'increaseAllowance', values: [string, BigNumberish]): string;
   encodeFunctionData(functionFragment: 'name', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'start', values?: undefined): string;
   encodeFunctionData(functionFragment: 'symbol', values?: undefined): string;
   encodeFunctionData(functionFragment: 'totalSupply', values?: undefined): string;
   encodeFunctionData(functionFragment: 'transfer', values: [string, BigNumberish]): string;
@@ -49,10 +59,15 @@ export interface MockOTInterface extends ethers.utils.Interface {
   decodeFunctionResult(functionFragment: 'allowance', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'approve', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'balanceOf', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'c_0xf04ab5b0', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'decimals', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'decreaseAllowance', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'expiry', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'getExpiry', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'getStart', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'increaseAllowance', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'name', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'start', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'symbol', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'totalSupply', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'transfer', data: BytesLike): Result;
@@ -104,6 +119,8 @@ export interface MockOT extends BaseContract {
 
     balanceOf(account: string, overrides?: CallOverrides): Promise<[BigNumber]>;
 
+    c_0xf04ab5b0(c__0xf04ab5b0: BytesLike, overrides?: CallOverrides): Promise<[void]>;
+
     decimals(overrides?: CallOverrides): Promise<[number]>;
 
     decreaseAllowance(
@@ -112,6 +129,12 @@ export interface MockOT extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
+    expiry(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    getExpiry(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    getStart(overrides?: CallOverrides): Promise<[BigNumber]>;
+
     increaseAllowance(
       spender: string,
       addedValue: BigNumberish,
@@ -119,6 +142,8 @@ export interface MockOT extends BaseContract {
     ): Promise<ContractTransaction>;
 
     name(overrides?: CallOverrides): Promise<[string]>;
+
+    start(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     symbol(overrides?: CallOverrides): Promise<[string]>;
 
@@ -140,6 +165,8 @@ export interface MockOT extends BaseContract {
 
   balanceOf(account: string, overrides?: CallOverrides): Promise<BigNumber>;
 
+  c_0xf04ab5b0(c__0xf04ab5b0: BytesLike, overrides?: CallOverrides): Promise<void>;
+
   decimals(overrides?: CallOverrides): Promise<number>;
 
   decreaseAllowance(
@@ -148,6 +175,12 @@ export interface MockOT extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  expiry(overrides?: CallOverrides): Promise<BigNumber>;
+
+  getExpiry(overrides?: CallOverrides): Promise<BigNumber>;
+
+  getStart(overrides?: CallOverrides): Promise<BigNumber>;
+
   increaseAllowance(
     spender: string,
     addedValue: BigNumberish,
@@ -155,6 +188,8 @@ export interface MockOT extends BaseContract {
   ): Promise<ContractTransaction>;
 
   name(overrides?: CallOverrides): Promise<string>;
+
+  start(overrides?: CallOverrides): Promise<BigNumber>;
 
   symbol(overrides?: CallOverrides): Promise<string>;
 
@@ -176,13 +211,23 @@ export interface MockOT extends BaseContract {
 
     balanceOf(account: string, overrides?: CallOverrides): Promise<BigNumber>;
 
+    c_0xf04ab5b0(c__0xf04ab5b0: BytesLike, overrides?: CallOverrides): Promise<void>;
+
     decimals(overrides?: CallOverrides): Promise<number>;
 
     decreaseAllowance(spender: string, subtractedValue: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
 
+    expiry(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getExpiry(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getStart(overrides?: CallOverrides): Promise<BigNumber>;
+
     increaseAllowance(spender: string, addedValue: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
 
     name(overrides?: CallOverrides): Promise<string>;
+
+    start(overrides?: CallOverrides): Promise<BigNumber>;
 
     symbol(overrides?: CallOverrides): Promise<string>;
 
@@ -208,6 +253,8 @@ export interface MockOT extends BaseContract {
 
     balanceOf(account: string, overrides?: CallOverrides): Promise<BigNumber>;
 
+    c_0xf04ab5b0(c__0xf04ab5b0: BytesLike, overrides?: CallOverrides): Promise<BigNumber>;
+
     decimals(overrides?: CallOverrides): Promise<BigNumber>;
 
     decreaseAllowance(
@@ -216,6 +263,12 @@ export interface MockOT extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
+    expiry(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getExpiry(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getStart(overrides?: CallOverrides): Promise<BigNumber>;
+
     increaseAllowance(
       spender: string,
       addedValue: BigNumberish,
@@ -223,6 +276,8 @@ export interface MockOT extends BaseContract {
     ): Promise<BigNumber>;
 
     name(overrides?: CallOverrides): Promise<BigNumber>;
+
+    start(overrides?: CallOverrides): Promise<BigNumber>;
 
     symbol(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -245,6 +300,8 @@ export interface MockOT extends BaseContract {
 
     balanceOf(account: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
+    c_0xf04ab5b0(c__0xf04ab5b0: BytesLike, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     decimals(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     decreaseAllowance(
@@ -253,6 +310,12 @@ export interface MockOT extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
+    expiry(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    getExpiry(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    getStart(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     increaseAllowance(
       spender: string,
       addedValue: BigNumberish,
@@ -260,6 +323,8 @@ export interface MockOT extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     name(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    start(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 

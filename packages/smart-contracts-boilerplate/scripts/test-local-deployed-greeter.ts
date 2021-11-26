@@ -10,7 +10,7 @@ async function main() {
 
   const MockOT = (await ethers.getContractAt(mockOTDeployment.abi, mockOTDeployment.address)) as MockOT;
 
-  assert((await greeter.greet()) === 'Bonjour localhost!');
+  assert((await greeter.greet()) === 'Error!');
   assert((await MockOT.name()) === 'MockOT');
   console.log(greeterDeployment.address);
 }
