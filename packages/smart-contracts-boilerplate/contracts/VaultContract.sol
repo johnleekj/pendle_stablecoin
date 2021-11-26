@@ -30,21 +30,21 @@ interface MockOTInterface {
 contract VaultContract {
   using SafeMath for uint256;
 
-  uint256 private constant LOAN_TO_VALUE = 50; // 50% (max % of KLC that can be borrowed with deposited collateralAmount)
-  uint256 private constant LOAN_TO_VALUE_PRECISION = 1e2; // 100
+  uint256 public constant LOAN_TO_VALUE = 50; // 50% (max % of KLC that can be borrowed with deposited collateralAmount)
+  uint256 public constant LOAN_TO_VALUE_PRECISION = 1e2; // 100
 
-  uint256 private constant LIQUIDATION_THRESHOLD = 75; // 75% (percentage at which a position is defined as under-collateralized)
+  uint256 public constant LIQUIDATION_THRESHOLD = 75; // 75% (percentage at which a position is defined as under-collateralized)
   // collaterization rate is 100% if position is defined as under-collateralized
-  uint256 private constant LIQUIDATION_THRESHOLD_PRECISION = 1e2; // 100
+  uint256 public constant LIQUIDATION_THRESHOLD_PRECISION = 1e2; // 100
 
   // this is incurred each time collateral is being added
-  uint256 private constant FLAT_FEE = 20; // 20 usd worth of mockOT
+  uint256 public constant FLAT_FEE = 20; // 20 usd worth of mockOT
 
   // this is not being used for now
-  uint256 private constant INTEREST_PER_MONTH = 4; // 4%
-  uint256 private constant INTEREST_PER_MONTH_precision = 1e2; // 100
+  uint256 public constant INTEREST_PER_MONTH = 4; // 4%
+  uint256 public constant INTEREST_PER_MONTH_PRECISION = 1e2; // 100
 
-  uint256 private constant DEBT_CEILING = 20; // max amount of KLC that can be borrowed at any time
+  uint256 public constant DEBT_CEILING = 20; // max amount of KLC that can be borrowed at any time
 
   // Total amounts
   uint256 public totalCollateral; // Total collateral supplied
@@ -69,16 +69,16 @@ contract VaultContract {
   function addCollateral(uint256 collateralAmount) public {
     uint256 flatFeeInMockOT = (FLAT_FEE * 10) / _getMockOtUSDValue();
     require(_mockOT.balanceOf(msg.sender) >= collateralAmount + flatFeeInMockOT);
-    _mockOT.transferFrom(msg.sender, address(this), collateralAmount + flatFeeInMockOT);
     userCollateral[msg.sender] = userCollateral[msg.sender].add(collateralAmount);
     totalCollateral = totalCollateral.add(collateralAmount);
+    _mockOT.transferFrom(msg.sender, address(this), collateralAmount + flatFeeInMockOT);
   }
 
   function removeCollateral(uint256 collateralAmount) public {
     require(collateralAmount <= userCollateral[msg.sender]);
-    _mockOT.transfer(msg.sender, collateralAmount);
     userCollateral[msg.sender] = userCollateral[msg.sender].sub(collateralAmount);
     totalCollateral = totalCollateral.sub(collateralAmount);
+    _mockOT.transfer(msg.sender, collateralAmount);
 
     _liquidateWhenLiquidatableDebtPosition(msg.sender);
   }
@@ -99,9 +99,9 @@ contract VaultContract {
       'Borrow Amount Above Debt Ceiling'
     );
 
-    _KhooleeToken.mint(msg.sender, borrowAmount); // mints to the borrower
     userBorrowed[msg.sender] = userBorrowed[msg.sender].add(borrowAmount);
     totalBorrow = totalBorrow.add(borrowAmount);
+    _KhooleeToken.mint(msg.sender, borrowAmount); // mints to the borrower
   }
 
   function repayDebt() public {
@@ -112,9 +112,9 @@ contract VaultContract {
     uint256 borrowAmount = userBorrowed[msg.sender];
 
     // repayed stablecoins will be burnt
-    _KhooleeToken.burnFrom(msg.sender, userBorrowed[msg.sender]);
     userBorrowed[msg.sender] = 0;
     totalBorrow = totalBorrow.sub(borrowAmount);
+    _KhooleeToken.burnFrom(msg.sender, userBorrowed[msg.sender]);
 
     removeCollateral(userCollateral[msg.sender]);
   }
