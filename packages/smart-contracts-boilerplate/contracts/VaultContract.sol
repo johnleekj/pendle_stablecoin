@@ -40,9 +40,9 @@ contract VaultContract {
   // this is incurred each time collateral is being added
   uint256 public constant FLAT_FEE = 20; // 20 usd worth of mockOT
 
-  // this is not being used for now
-  uint256 public constant INTEREST_PER_MONTH = 4; // 4%
-  uint256 public constant INTEREST_PER_MONTH_PRECISION = 1e2; // 100
+  // this is derived from annual interest (4% per year)
+  uint256 public constant INTEREST_PER_SECOND = 126; // 4%/31536000 seconds
+  uint256 public constant INTEREST_PER_SECOND_PRECISION = 1e11;
 
   uint256 public constant DEBT_CEILING = 20; // max amount of KLC that can be borrowed at any time
 
@@ -53,6 +53,13 @@ contract VaultContract {
   // User balances
   mapping(address => uint256) public userCollateral; // collateral deposited by user of corresponding address
   mapping(address => uint256) public userBorrowed; //KhooleeCoin borrowed by user of corresponding address
+  mapping(address => AccrueInfo) public userAccruedInfo; //AccruedInfo by user of corresponding address
+
+  // this contains data about accrued interest 
+  struct AccrueInfo {
+      uint64 lastAccrued;
+      uint128 feesEarned;
+  }
 
   KhooleeCoinMinterInterface _KhooleeToken;
   MockOTInterface _mockOT;
@@ -66,6 +73,25 @@ contract VaultContract {
   //     _KhooleeToken.mint(block.coinbase, 1000);
   // }
 
+  function accrue() public {
+    if (userAccruedInfo[msg.sender].lastAccrued == 0) {
+      //never accrue before
+      userAccruedInfo[msg.sender].lastAccrued = uint64(block.timestamp);
+      userAccruedInfo[msg.sender].feesEarned = uint128(0);
+    }
+    else {
+      AccrueInfo memory _accrueInfo = userAccruedInfo[msg.sender];
+      uint256 elapsedTime = block.timestamp - _accrueInfo.lastAccrued;
+      if (elapsedTime == 0) return;
+      _accrueInfo.lastAccrued = uint64(block.timestamp);
+
+      // Accrue interest
+      uint128 extraAmount = uint128(totalBorrow.mul(INTEREST_PER_SECOND).mul(elapsedTime) / INTEREST_PER_SECOND_PRECISION);
+      _accrueInfo.feesEarned = extraAmount;
+      userAccruedInfo[msg.sender] = _accrueInfo;
+    }
+  }
+
   function addCollateral(uint256 collateralAmount) public {
     uint256 flatFeeInMockOT = (FLAT_FEE * 10) / _getMockOtUSDValue();
     require(_mockOT.balanceOf(msg.sender) >= collateralAmount + flatFeeInMockOT);
@@ -76,6 +102,7 @@ contract VaultContract {
 
   function removeCollateral(uint256 collateralAmount) public {
     require(collateralAmount <= userCollateral[msg.sender]);
+    //accrue();
     userCollateral[msg.sender] = userCollateral[msg.sender].sub(collateralAmount);
     totalCollateral = totalCollateral.sub(collateralAmount);
     _mockOT.transfer(msg.sender, collateralAmount);
@@ -98,13 +125,14 @@ contract VaultContract {
       totalBorrow + borrowAmount + userBorrowed[msg.sender] <= DEBT_CEILING,
       'Borrow Amount Above Debt Ceiling'
     );
-
+    //accrue();
     userBorrowed[msg.sender] = userBorrowed[msg.sender].add(borrowAmount);
     totalBorrow = totalBorrow.add(borrowAmount);
     _KhooleeToken.mint(msg.sender, borrowAmount); // mints to the borrower
   }
 
   function repayDebt() public {
+    //accrue();
     require(
       _KhooleeToken.balanceOf(msg.sender) >= userBorrowed[msg.sender],
       'Insufficient Tokens'
@@ -149,6 +177,8 @@ contract VaultContract {
     return a;
     //return ((userCollateral[msg.sender] * LIQUIDATION_THRESHOLD / LIQUIDATION_THRESHOLD_PRECISION) / userBorrowed[msg.sender] *);
   }
+
+
 
   //======================= Helper Methods ==========================================
   // supposed to be oracle to get value, but this will do for now
