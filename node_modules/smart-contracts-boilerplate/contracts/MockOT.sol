@@ -15,7 +15,7 @@ contract MockOT is ERC20 {
     start = block.timestamp;
     expiry = block.timestamp + _daysToExpire * 1 days;
 
-    _mint(msg.sender, 1000000 * (10**uint256(decimals())));
+    _mint(msg.sender, 500);
   }
 
   /**
