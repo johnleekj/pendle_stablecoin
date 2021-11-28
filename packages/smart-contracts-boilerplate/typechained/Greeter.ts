@@ -13,43 +13,29 @@ import {
   ContractTransaction,
   Overrides,
   CallOverrides,
-} from "ethers";
-import { BytesLike } from "@ethersproject/bytes";
-import { Listener, Provider } from "@ethersproject/providers";
-import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
-import type {
-  TypedEventFilter,
-  TypedEvent,
-  TypedListener,
-  OnEvent,
-} from "./common";
+} from 'ethers';
+import { BytesLike } from '@ethersproject/bytes';
+import { Listener, Provider } from '@ethersproject/providers';
+import { FunctionFragment, EventFragment, Result } from '@ethersproject/abi';
+import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from './common';
 
 export interface GreeterInterface extends ethers.utils.Interface {
   functions: {
-    "c_0x926483df(bytes32)": FunctionFragment;
-    "greet()": FunctionFragment;
-    "greeting()": FunctionFragment;
-    "setGreeting(string)": FunctionFragment;
+    'c_0x926483df(bytes32)': FunctionFragment;
+    'greet()': FunctionFragment;
+    'greeting()': FunctionFragment;
+    'setGreeting(string)': FunctionFragment;
   };
 
-  encodeFunctionData(
-    functionFragment: "c_0x926483df",
-    values: [BytesLike]
-  ): string;
-  encodeFunctionData(functionFragment: "greet", values?: undefined): string;
-  encodeFunctionData(functionFragment: "greeting", values?: undefined): string;
-  encodeFunctionData(functionFragment: "setGreeting", values: [string]): string;
+  encodeFunctionData(functionFragment: 'c_0x926483df', values: [BytesLike]): string;
+  encodeFunctionData(functionFragment: 'greet', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'greeting', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'setGreeting', values: [string]): string;
 
-  decodeFunctionResult(
-    functionFragment: "c_0x926483df",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "greet", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "greeting", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "setGreeting",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: 'c_0x926483df', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'greet', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'greeting', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'setGreeting', data: BytesLike): Result;
 
   events: {};
 }
@@ -67,13 +53,9 @@ export interface Greeter extends BaseContract {
     toBlock?: string | number | undefined
   ): Promise<Array<TEvent>>;
 
-  listeners<TEvent extends TypedEvent>(
-    eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
+  listeners<TEvent extends TypedEvent>(eventFilter?: TypedEventFilter<TEvent>): Array<TypedListener<TEvent>>;
   listeners(eventName?: string): Array<Listener>;
-  removeAllListeners<TEvent extends TypedEvent>(
-    eventFilter: TypedEventFilter<TEvent>
-  ): this;
+  removeAllListeners<TEvent extends TypedEvent>(eventFilter: TypedEventFilter<TEvent>): this;
   removeAllListeners(eventName?: string): this;
   off: OnEvent<this>;
   on: OnEvent<this>;
@@ -81,40 +63,25 @@ export interface Greeter extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
-    c_0x926483df(
-      c__0x926483df: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<[void]>;
+    c_0x926483df(c__0x926483df: BytesLike, overrides?: CallOverrides): Promise<[void]>;
 
     greet(overrides?: CallOverrides): Promise<[string]>;
 
     greeting(overrides?: CallOverrides): Promise<[string]>;
 
-    setGreeting(
-      _greeting: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    setGreeting(_greeting: string, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
   };
 
-  c_0x926483df(
-    c__0x926483df: BytesLike,
-    overrides?: CallOverrides
-  ): Promise<void>;
+  c_0x926483df(c__0x926483df: BytesLike, overrides?: CallOverrides): Promise<void>;
 
   greet(overrides?: CallOverrides): Promise<string>;
 
   greeting(overrides?: CallOverrides): Promise<string>;
 
-  setGreeting(
-    _greeting: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  setGreeting(_greeting: string, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
   callStatic: {
-    c_0x926483df(
-      c__0x926483df: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<void>;
+    c_0x926483df(c__0x926483df: BytesLike, overrides?: CallOverrides): Promise<void>;
 
     greet(overrides?: CallOverrides): Promise<string>;
 
@@ -126,34 +93,22 @@ export interface Greeter extends BaseContract {
   filters: {};
 
   estimateGas: {
-    c_0x926483df(
-      c__0x926483df: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    c_0x926483df(c__0x926483df: BytesLike, overrides?: CallOverrides): Promise<BigNumber>;
 
     greet(overrides?: CallOverrides): Promise<BigNumber>;
 
     greeting(overrides?: CallOverrides): Promise<BigNumber>;
 
-    setGreeting(
-      _greeting: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    setGreeting(_greeting: string, overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    c_0x926483df(
-      c__0x926483df: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    c_0x926483df(c__0x926483df: BytesLike, overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     greet(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     greeting(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    setGreeting(
-      _greeting: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    setGreeting(_greeting: string, overrides?: Overrides & { from?: string | Promise<string> }): Promise<PopulatedTransaction>;
   };
 }

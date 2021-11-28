@@ -2,68 +2,65 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer, utils } from "ethers";
-import { Provider } from "@ethersproject/providers";
-import type {
-  KhooleeCoinMinterInterface,
-  KhooleeCoinMinterInterfaceInterface,
-} from "../KhooleeCoinMinterInterface";
+import { Contract, Signer, utils } from 'ethers';
+import { Provider } from '@ethersproject/providers';
+import type { KhooleeCoinMinterInterface, KhooleeCoinMinterInterfaceInterface } from '../KhooleeCoinMinterInterface';
 
 const _abi = [
   {
     inputs: [
       {
-        internalType: "address",
-        name: "owner",
-        type: "address",
+        internalType: 'address',
+        name: 'owner',
+        type: 'address',
       },
     ],
-    name: "balanceOf",
+    name: 'balanceOf',
     outputs: [
       {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
       },
     ],
-    stateMutability: "view",
-    type: "function",
+    stateMutability: 'view',
+    type: 'function',
   },
   {
     inputs: [
       {
-        internalType: "address",
-        name: "account",
-        type: "address",
+        internalType: 'address',
+        name: 'account',
+        type: 'address',
       },
       {
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
       },
     ],
-    name: "burnFrom",
+    name: 'burnFrom',
     outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
     inputs: [
       {
-        internalType: "address",
-        name: "to",
-        type: "address",
+        internalType: 'address',
+        name: 'to',
+        type: 'address',
       },
       {
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
       },
     ],
-    name: "mint",
+    name: 'mint',
     outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
 ];
 
@@ -72,14 +69,7 @@ export class KhooleeCoinMinterInterface__factory {
   static createInterface(): KhooleeCoinMinterInterfaceInterface {
     return new utils.Interface(_abi) as KhooleeCoinMinterInterfaceInterface;
   }
-  static connect(
-    address: string,
-    signerOrProvider: Signer | Provider
-  ): KhooleeCoinMinterInterface {
-    return new Contract(
-      address,
-      _abi,
-      signerOrProvider
-    ) as KhooleeCoinMinterInterface;
+  static connect(address: string, signerOrProvider: Signer | Provider): KhooleeCoinMinterInterface {
+    return new Contract(address, _abi, signerOrProvider) as KhooleeCoinMinterInterface;
   }
 }
