@@ -63,3 +63,19 @@ Implement
 - Price oracle
 - Configurable risk parameters
 - Allow for trustless minting by building KLC on top of DS token instead of erc20PresetMinter
+
+## How to run the code
+- Install all package dependencies (yarn add)
+- CD into smartcontract boilerplate, run (yarn hardhat deploy)
+- to run JS code interacting w the blockchain, u can utilize "test-local-deployed-greeter.ts" on a seperate terminal window. (yarn hardhat run ./scripts/     test-local-deployed-greeter.ts --network localhost)
+- to run on react application, ensure contract address in frontend/frontend/src/components/ Header.jsx, Liquidity.jsx and Loan.jsx are running
+- currently code only works if you sign into the hardhat demo account #1 (0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266)
+- Deployed contract will allocate 500 mockOT to this account
+- Approve the vault contract as a khooleecoinminter by clicking on the logo (hide the pain harold's spinning face)
+
+- To borrow khooleecoins, set a collateral amount and a borrow amount (will not work if either is blank)
+- For example, 75 collateral to borrow 20 khooleecoins (the max debt limit that we sent)
+- click on borrow and approve all transactions
+- To repay click repay
+- Liquidation component below was added for demo purposes, please ignore
+
