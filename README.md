@@ -69,6 +69,7 @@ Implement
 - CD into smartcontract boilerplate, run (yarn hardhat deploy)
 - to run JS code interacting w the blockchain, u can utilize "test-local-deployed-greeter.ts" on a seperate terminal window. (yarn hardhat run ./scripts/     test-local-deployed-greeter.ts --network localhost)
 - to run on react application, ensure contract address in frontend/frontend/src/components/ Header.jsx, Liquidity.jsx and Loan.jsx are running
+- run (yarn start) within packages/frontend/frontend 
 - currently code only works if you sign into the hardhat demo account #1 (0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266)
 - Deployed contract will allocate 500 mockOT to this account
 - Approve the vault contract as a khooleecoinminter by clicking on the logo (hide the pain harold's spinning face)
