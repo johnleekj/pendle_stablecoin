@@ -114,7 +114,7 @@ contract VaultContract {
     // repayed stablecoins will be burnt
     userBorrowed[msg.sender] = 0;
     totalBorrow = totalBorrow.sub(borrowAmount);
-    _KhooleeToken.burnFrom(msg.sender, userBorrowed[msg.sender]);
+    _KhooleeToken.burnFrom(msg.sender, borrowAmount);
 
     removeCollateral(userCollateral[msg.sender]);
   }
@@ -170,5 +170,17 @@ contract VaultContract {
 
   function getDebtCeiling() public pure returns (uint256) {
     return DEBT_CEILING;
+  }
+
+  function getUserBorrowed(address user) public view returns (uint256) {
+    return userBorrowed[user];
+  }
+
+  function getTotalCollateral() public view returns (uint256) {
+    return totalCollateral;
+  }
+
+  function getUserCollateral(address user) public view returns (uint256) {
+    return userCollateral[user];
   }
 }

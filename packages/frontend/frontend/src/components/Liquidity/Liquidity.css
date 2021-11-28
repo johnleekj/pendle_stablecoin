@@ -1,0 +1,26 @@
+.Liquidity-Component {
+    background-color: #282c34;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: white;
+    min-height: 50vh;
+}
+
+.labels {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.label-text{
+    margin: 0vh 20vh 5vh 20vh;
+}
+
+.health-text {
+    margin: 0vh 30vh 5vh 30vh;
+}
+
+span {
+    color: red;
+}
