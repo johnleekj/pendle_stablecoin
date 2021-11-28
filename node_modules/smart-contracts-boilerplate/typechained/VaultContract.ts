@@ -13,80 +13,208 @@ import {
   ContractTransaction,
   Overrides,
   CallOverrides,
-} from 'ethers';
-import { BytesLike } from '@ethersproject/bytes';
-import { Listener, Provider } from '@ethersproject/providers';
-import { FunctionFragment, EventFragment, Result } from '@ethersproject/abi';
-import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from './common';
+} from "ethers";
+import { BytesLike } from "@ethersproject/bytes";
+import { Listener, Provider } from "@ethersproject/providers";
+import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
+import type {
+  TypedEventFilter,
+  TypedEvent,
+  TypedListener,
+  OnEvent,
+} from "./common";
 
 export interface VaultContractInterface extends ethers.utils.Interface {
   functions: {
-    'DEBT_CEILING()': FunctionFragment;
-    'FLAT_FEE()': FunctionFragment;
-    'INTEREST_PER_MONTH()': FunctionFragment;
-    'INTEREST_PER_MONTH_PRECISION()': FunctionFragment;
-    'LIQUIDATION_THRESHOLD()': FunctionFragment;
-    'LIQUIDATION_THRESHOLD_PRECISION()': FunctionFragment;
-    'LOAN_TO_VALUE()': FunctionFragment;
-    'LOAN_TO_VALUE_PRECISION()': FunctionFragment;
-    'addCollateral(uint256)': FunctionFragment;
-    'borrowKhooleeCoins(uint256)': FunctionFragment;
-    'getDebtCeiling()': FunctionFragment;
-    'getTotalCollateral()': FunctionFragment;
-    'getUserBorrowed(address)': FunctionFragment;
-    'getUserCollateral(address)': FunctionFragment;
-    'removeCollateral(uint256)': FunctionFragment;
-    'repayDebt()': FunctionFragment;
-    'returnHealthFactor()': FunctionFragment;
-    'totalBorrow()': FunctionFragment;
-    'totalCollateral()': FunctionFragment;
-    'userBorrowed(address)': FunctionFragment;
-    'userCollateral(address)': FunctionFragment;
+    "DEBT_CEILING()": FunctionFragment;
+    "FLAT_FEE()": FunctionFragment;
+    "INTEREST_PER_MONTH()": FunctionFragment;
+    "INTEREST_PER_MONTH_PRECISION()": FunctionFragment;
+    "LIQUIDATION_THRESHOLD()": FunctionFragment;
+    "LIQUIDATION_THRESHOLD_PRECISION()": FunctionFragment;
+    "LOAN_TO_VALUE()": FunctionFragment;
+    "LOAN_TO_VALUE_PRECISION()": FunctionFragment;
+    "addCollateral(uint256)": FunctionFragment;
+    "borrowKhooleeCoins(uint256)": FunctionFragment;
+    "c_0x36d691bc(bytes32)": FunctionFragment;
+    "getDebtCeiling()": FunctionFragment;
+    "getTotalCollateral()": FunctionFragment;
+    "getUserBorrowed(address)": FunctionFragment;
+    "getUserCollateral(address)": FunctionFragment;
+    "removeCollateral(uint256)": FunctionFragment;
+    "repayDebt()": FunctionFragment;
+    "returnHealthFactor()": FunctionFragment;
+    "totalBorrow()": FunctionFragment;
+    "totalCollateral()": FunctionFragment;
+    "userBorrowed(address)": FunctionFragment;
+    "userCollateral(address)": FunctionFragment;
   };
 
-  encodeFunctionData(functionFragment: 'DEBT_CEILING', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'FLAT_FEE', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'INTEREST_PER_MONTH', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'INTEREST_PER_MONTH_PRECISION', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'LIQUIDATION_THRESHOLD', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'LIQUIDATION_THRESHOLD_PRECISION', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'LOAN_TO_VALUE', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'LOAN_TO_VALUE_PRECISION', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'addCollateral', values: [BigNumberish]): string;
-  encodeFunctionData(functionFragment: 'borrowKhooleeCoins', values: [BigNumberish]): string;
-  encodeFunctionData(functionFragment: 'getDebtCeiling', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'getTotalCollateral', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'getUserBorrowed', values: [string]): string;
-  encodeFunctionData(functionFragment: 'getUserCollateral', values: [string]): string;
-  encodeFunctionData(functionFragment: 'removeCollateral', values: [BigNumberish]): string;
-  encodeFunctionData(functionFragment: 'repayDebt', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'returnHealthFactor', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'totalBorrow', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'totalCollateral', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'userBorrowed', values: [string]): string;
-  encodeFunctionData(functionFragment: 'userCollateral', values: [string]): string;
+  encodeFunctionData(
+    functionFragment: "DEBT_CEILING",
+    values?: undefined
+  ): string;
+  encodeFunctionData(functionFragment: "FLAT_FEE", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "INTEREST_PER_MONTH",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "INTEREST_PER_MONTH_PRECISION",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "LIQUIDATION_THRESHOLD",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "LIQUIDATION_THRESHOLD_PRECISION",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "LOAN_TO_VALUE",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "LOAN_TO_VALUE_PRECISION",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "addCollateral",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "borrowKhooleeCoins",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "c_0x36d691bc",
+    values: [BytesLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getDebtCeiling",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getTotalCollateral",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getUserBorrowed",
+    values: [string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getUserCollateral",
+    values: [string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "removeCollateral",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(functionFragment: "repayDebt", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "returnHealthFactor",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "totalBorrow",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "totalCollateral",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "userBorrowed",
+    values: [string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "userCollateral",
+    values: [string]
+  ): string;
 
-  decodeFunctionResult(functionFragment: 'DEBT_CEILING', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'FLAT_FEE', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'INTEREST_PER_MONTH', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'INTEREST_PER_MONTH_PRECISION', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'LIQUIDATION_THRESHOLD', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'LIQUIDATION_THRESHOLD_PRECISION', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'LOAN_TO_VALUE', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'LOAN_TO_VALUE_PRECISION', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'addCollateral', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'borrowKhooleeCoins', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getDebtCeiling', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getTotalCollateral', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getUserBorrowed', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getUserCollateral', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'removeCollateral', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'repayDebt', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'returnHealthFactor', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'totalBorrow', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'totalCollateral', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'userBorrowed', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'userCollateral', data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "DEBT_CEILING",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "FLAT_FEE", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "INTEREST_PER_MONTH",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "INTEREST_PER_MONTH_PRECISION",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "LIQUIDATION_THRESHOLD",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "LIQUIDATION_THRESHOLD_PRECISION",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "LOAN_TO_VALUE",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "LOAN_TO_VALUE_PRECISION",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "addCollateral",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "borrowKhooleeCoins",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "c_0x36d691bc",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getDebtCeiling",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getTotalCollateral",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getUserBorrowed",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getUserCollateral",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "removeCollateral",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "repayDebt", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "returnHealthFactor",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "totalBorrow",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "totalCollateral",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "userBorrowed",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "userCollateral",
+    data: BytesLike
+  ): Result;
 
   events: {};
 }
@@ -104,9 +232,13 @@ export interface VaultContract extends BaseContract {
     toBlock?: string | number | undefined
   ): Promise<Array<TEvent>>;
 
-  listeners<TEvent extends TypedEvent>(eventFilter?: TypedEventFilter<TEvent>): Array<TypedListener<TEvent>>;
+  listeners<TEvent extends TypedEvent>(
+    eventFilter?: TypedEventFilter<TEvent>
+  ): Array<TypedListener<TEvent>>;
   listeners(eventName?: string): Array<Listener>;
-  removeAllListeners<TEvent extends TypedEvent>(eventFilter: TypedEventFilter<TEvent>): this;
+  removeAllListeners<TEvent extends TypedEvent>(
+    eventFilter: TypedEventFilter<TEvent>
+  ): this;
   removeAllListeners(eventName?: string): this;
   off: OnEvent<this>;
   on: OnEvent<this>;
@@ -120,31 +252,57 @@ export interface VaultContract extends BaseContract {
 
     INTEREST_PER_MONTH(overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    INTEREST_PER_MONTH_PRECISION(overrides?: CallOverrides): Promise<[BigNumber]>;
+    INTEREST_PER_MONTH_PRECISION(
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
 
     LIQUIDATION_THRESHOLD(overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    LIQUIDATION_THRESHOLD_PRECISION(overrides?: CallOverrides): Promise<[BigNumber]>;
+    LIQUIDATION_THRESHOLD_PRECISION(
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
 
     LOAN_TO_VALUE(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     LOAN_TO_VALUE_PRECISION(overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    addCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
+    addCollateral(
+      collateralAmount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
 
-    borrowKhooleeCoins(borrowAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
+    borrowKhooleeCoins(
+      borrowAmount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    c_0x36d691bc(
+      c__0x36d691bc: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<[void]>;
 
     getDebtCeiling(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     getTotalCollateral(overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    getUserBorrowed(user: string, overrides?: CallOverrides): Promise<[BigNumber]>;
+    getUserBorrowed(
+      user: string,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
 
-    getUserCollateral(user: string, overrides?: CallOverrides): Promise<[BigNumber]>;
+    getUserCollateral(
+      user: string,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
 
-    removeCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
+    removeCollateral(
+      collateralAmount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
 
-    repayDebt(overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
+    repayDebt(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
 
     returnHealthFactor(overrides?: CallOverrides): Promise<[BigNumber]>;
 
@@ -154,7 +312,10 @@ export interface VaultContract extends BaseContract {
 
     userBorrowed(arg0: string, overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    userCollateral(arg0: string, overrides?: CallOverrides): Promise<[BigNumber]>;
+    userCollateral(
+      arg0: string,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
   };
 
   DEBT_CEILING(overrides?: CallOverrides): Promise<BigNumber>;
@@ -167,15 +328,28 @@ export interface VaultContract extends BaseContract {
 
   LIQUIDATION_THRESHOLD(overrides?: CallOverrides): Promise<BigNumber>;
 
-  LIQUIDATION_THRESHOLD_PRECISION(overrides?: CallOverrides): Promise<BigNumber>;
+  LIQUIDATION_THRESHOLD_PRECISION(
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
 
   LOAN_TO_VALUE(overrides?: CallOverrides): Promise<BigNumber>;
 
   LOAN_TO_VALUE_PRECISION(overrides?: CallOverrides): Promise<BigNumber>;
 
-  addCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
+  addCollateral(
+    collateralAmount: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
 
-  borrowKhooleeCoins(borrowAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
+  borrowKhooleeCoins(
+    borrowAmount: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  c_0x36d691bc(
+    c__0x36d691bc: BytesLike,
+    overrides?: CallOverrides
+  ): Promise<void>;
 
   getDebtCeiling(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -183,11 +357,19 @@ export interface VaultContract extends BaseContract {
 
   getUserBorrowed(user: string, overrides?: CallOverrides): Promise<BigNumber>;
 
-  getUserCollateral(user: string, overrides?: CallOverrides): Promise<BigNumber>;
+  getUserCollateral(
+    user: string,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
 
-  removeCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
+  removeCollateral(
+    collateralAmount: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
 
-  repayDebt(overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
+  repayDebt(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
 
   returnHealthFactor(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -210,25 +392,47 @@ export interface VaultContract extends BaseContract {
 
     LIQUIDATION_THRESHOLD(overrides?: CallOverrides): Promise<BigNumber>;
 
-    LIQUIDATION_THRESHOLD_PRECISION(overrides?: CallOverrides): Promise<BigNumber>;
+    LIQUIDATION_THRESHOLD_PRECISION(
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     LOAN_TO_VALUE(overrides?: CallOverrides): Promise<BigNumber>;
 
     LOAN_TO_VALUE_PRECISION(overrides?: CallOverrides): Promise<BigNumber>;
 
-    addCollateral(collateralAmount: BigNumberish, overrides?: CallOverrides): Promise<void>;
+    addCollateral(
+      collateralAmount: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
-    borrowKhooleeCoins(borrowAmount: BigNumberish, overrides?: CallOverrides): Promise<void>;
+    borrowKhooleeCoins(
+      borrowAmount: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    c_0x36d691bc(
+      c__0x36d691bc: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     getDebtCeiling(overrides?: CallOverrides): Promise<BigNumber>;
 
     getTotalCollateral(overrides?: CallOverrides): Promise<BigNumber>;
 
-    getUserBorrowed(user: string, overrides?: CallOverrides): Promise<BigNumber>;
+    getUserBorrowed(
+      user: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
-    getUserCollateral(user: string, overrides?: CallOverrides): Promise<BigNumber>;
+    getUserCollateral(
+      user: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
-    removeCollateral(collateralAmount: BigNumberish, overrides?: CallOverrides): Promise<void>;
+    removeCollateral(
+      collateralAmount: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     repayDebt(overrides?: CallOverrides): Promise<void>;
 
@@ -256,27 +460,51 @@ export interface VaultContract extends BaseContract {
 
     LIQUIDATION_THRESHOLD(overrides?: CallOverrides): Promise<BigNumber>;
 
-    LIQUIDATION_THRESHOLD_PRECISION(overrides?: CallOverrides): Promise<BigNumber>;
+    LIQUIDATION_THRESHOLD_PRECISION(
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     LOAN_TO_VALUE(overrides?: CallOverrides): Promise<BigNumber>;
 
     LOAN_TO_VALUE_PRECISION(overrides?: CallOverrides): Promise<BigNumber>;
 
-    addCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
+    addCollateral(
+      collateralAmount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
 
-    borrowKhooleeCoins(borrowAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
+    borrowKhooleeCoins(
+      borrowAmount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    c_0x36d691bc(
+      c__0x36d691bc: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     getDebtCeiling(overrides?: CallOverrides): Promise<BigNumber>;
 
     getTotalCollateral(overrides?: CallOverrides): Promise<BigNumber>;
 
-    getUserBorrowed(user: string, overrides?: CallOverrides): Promise<BigNumber>;
+    getUserBorrowed(
+      user: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
-    getUserCollateral(user: string, overrides?: CallOverrides): Promise<BigNumber>;
+    getUserCollateral(
+      user: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
-    removeCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
+    removeCollateral(
+      collateralAmount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
 
-    repayDebt(overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
+    repayDebt(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
 
     returnHealthFactor(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -294,42 +522,84 @@ export interface VaultContract extends BaseContract {
 
     FLAT_FEE(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    INTEREST_PER_MONTH(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    INTEREST_PER_MONTH(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
-    INTEREST_PER_MONTH_PRECISION(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    INTEREST_PER_MONTH_PRECISION(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
-    LIQUIDATION_THRESHOLD(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    LIQUIDATION_THRESHOLD(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
-    LIQUIDATION_THRESHOLD_PRECISION(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    LIQUIDATION_THRESHOLD_PRECISION(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     LOAN_TO_VALUE(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    LOAN_TO_VALUE_PRECISION(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    LOAN_TO_VALUE_PRECISION(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
-    addCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<PopulatedTransaction>;
+    addCollateral(
+      collateralAmount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
 
-    borrowKhooleeCoins(borrowAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<PopulatedTransaction>;
+    borrowKhooleeCoins(
+      borrowAmount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    c_0x36d691bc(
+      c__0x36d691bc: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     getDebtCeiling(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    getTotalCollateral(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    getTotalCollateral(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
-    getUserBorrowed(user: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    getUserBorrowed(
+      user: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
-    getUserCollateral(user: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    getUserCollateral(
+      user: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
-    removeCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<PopulatedTransaction>;
+    removeCollateral(
+      collateralAmount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
 
-    repayDebt(overrides?: Overrides & { from?: string | Promise<string> }): Promise<PopulatedTransaction>;
+    repayDebt(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
 
-    returnHealthFactor(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    returnHealthFactor(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     totalBorrow(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     totalCollateral(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    userBorrowed(arg0: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    userBorrowed(
+      arg0: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
-    userCollateral(arg0: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    userCollateral(
+      arg0: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
   };
 }
