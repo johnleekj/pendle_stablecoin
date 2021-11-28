@@ -175,4 +175,12 @@ contract VaultContract {
   function getUserBorrowed(address user) public view returns (uint256) {
     return userBorrowed[user];
   }
+
+  function getTotalCollateral() public view returns (uint256) {
+    return totalCollateral;
+  }
+
+  function getUserCollateral(address user) public view returns (uint256) {
+    return userCollateral[user];
+  }
 }

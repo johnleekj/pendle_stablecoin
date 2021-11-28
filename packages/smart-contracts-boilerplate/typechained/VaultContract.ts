@@ -32,7 +32,9 @@ export interface VaultContractInterface extends ethers.utils.Interface {
     'addCollateral(uint256)': FunctionFragment;
     'borrowKhooleeCoins(uint256)': FunctionFragment;
     'getDebtCeiling()': FunctionFragment;
+    'getTotalCollateral()': FunctionFragment;
     'getUserBorrowed(address)': FunctionFragment;
+    'getUserCollateral(address)': FunctionFragment;
     'removeCollateral(uint256)': FunctionFragment;
     'repayDebt()': FunctionFragment;
     'returnHealthFactor()': FunctionFragment;
@@ -53,7 +55,9 @@ export interface VaultContractInterface extends ethers.utils.Interface {
   encodeFunctionData(functionFragment: 'addCollateral', values: [BigNumberish]): string;
   encodeFunctionData(functionFragment: 'borrowKhooleeCoins', values: [BigNumberish]): string;
   encodeFunctionData(functionFragment: 'getDebtCeiling', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'getTotalCollateral', values?: undefined): string;
   encodeFunctionData(functionFragment: 'getUserBorrowed', values: [string]): string;
+  encodeFunctionData(functionFragment: 'getUserCollateral', values: [string]): string;
   encodeFunctionData(functionFragment: 'removeCollateral', values: [BigNumberish]): string;
   encodeFunctionData(functionFragment: 'repayDebt', values?: undefined): string;
   encodeFunctionData(functionFragment: 'returnHealthFactor', values?: undefined): string;
@@ -73,7 +77,9 @@ export interface VaultContractInterface extends ethers.utils.Interface {
   decodeFunctionResult(functionFragment: 'addCollateral', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'borrowKhooleeCoins', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'getDebtCeiling', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'getTotalCollateral', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'getUserBorrowed', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'getUserCollateral', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'removeCollateral', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'repayDebt', data: BytesLike): Result;
   decodeFunctionResult(functionFragment: 'returnHealthFactor', data: BytesLike): Result;
@@ -130,7 +136,11 @@ export interface VaultContract extends BaseContract {
 
     getDebtCeiling(overrides?: CallOverrides): Promise<[BigNumber]>;
 
+    getTotalCollateral(overrides?: CallOverrides): Promise<[BigNumber]>;
+
     getUserBorrowed(user: string, overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    getUserCollateral(user: string, overrides?: CallOverrides): Promise<[BigNumber]>;
 
     removeCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
@@ -169,7 +179,11 @@ export interface VaultContract extends BaseContract {
 
   getDebtCeiling(overrides?: CallOverrides): Promise<BigNumber>;
 
+  getTotalCollateral(overrides?: CallOverrides): Promise<BigNumber>;
+
   getUserBorrowed(user: string, overrides?: CallOverrides): Promise<BigNumber>;
+
+  getUserCollateral(user: string, overrides?: CallOverrides): Promise<BigNumber>;
 
   removeCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<ContractTransaction>;
 
@@ -208,7 +222,11 @@ export interface VaultContract extends BaseContract {
 
     getDebtCeiling(overrides?: CallOverrides): Promise<BigNumber>;
 
+    getTotalCollateral(overrides?: CallOverrides): Promise<BigNumber>;
+
     getUserBorrowed(user: string, overrides?: CallOverrides): Promise<BigNumber>;
+
+    getUserCollateral(user: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     removeCollateral(collateralAmount: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
@@ -250,7 +268,11 @@ export interface VaultContract extends BaseContract {
 
     getDebtCeiling(overrides?: CallOverrides): Promise<BigNumber>;
 
+    getTotalCollateral(overrides?: CallOverrides): Promise<BigNumber>;
+
     getUserBorrowed(user: string, overrides?: CallOverrides): Promise<BigNumber>;
+
+    getUserCollateral(user: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     removeCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<BigNumber>;
 
@@ -290,7 +312,11 @@ export interface VaultContract extends BaseContract {
 
     getDebtCeiling(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
+    getTotalCollateral(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     getUserBorrowed(user: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    getUserCollateral(user: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     removeCollateral(collateralAmount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }): Promise<PopulatedTransaction>;
 

@@ -32,3 +32,8 @@
       transform: rotate(360deg);
     }
   }
+
+  .hidethepain{
+    background-color: #282c34;
+    border:none;
+  }
