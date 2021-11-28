@@ -1,4 +1,6 @@
 # Pendle stablecoin project
+![Alt text](https://github.com/johnleekj/pendle_stablecoin/blob/5a58fb47714430ef506311a160a6974bba76da89/Screenshot-20211128203944-230x223-removebg-preview.png)
+
 Worked on by 
 - Lee Kai Jie, John 
 - Khoo Chee Yang
