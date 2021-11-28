@@ -77,5 +77,8 @@ Implement
 - For example, 75 collateral to borrow 20 khooleecoins (the max debt limit that we sent)
 - click on borrow and approve all transactions
 - To repay click repay
-- Liquidation component below was added for demo purposes, please ignore
-
+- Liquidation component below was added for demo purposes, to test, follow the same process for borrowing.
+- Refresh the page to connect the Total vault collateral to user collateral
+- To simulate decreasing vault collateral, click on button (will remove -5 collateral value from vault)
+- You can see the change in the health factor
+- You can see the change in collateral value once value falls below liquidation threshold
